@@ -1,0 +1,86 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Geist", system-ui, sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f1419 50%, #0a0a0a 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism base */
+.glass-effect {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.glass-effect-subtle {
+  background: rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image: 
+    linear-gradient(rgba(148, 163, 184, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Glow effect */
+.glow-accent {
+  box-shadow: 0 0 20px rgba(226, 232, 240, 0.1), inset 0 0 20px rgba(226, 232, 240, 0.05);
+}
+
+/* Premium gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Code block styling */
+code {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+}
