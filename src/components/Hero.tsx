@@ -1,10 +1,14 @@
 import { motion } from 'framer-motion'
-import { Typewriter } from 'react-simple-typewriter'
+import RotatingText from './ui/RotatingText'
 import { ChevronDown } from 'lucide-react'
+import { useRef } from 'react'
+import VariableProximity from './VariableProximity'
 
 export default function Hero() {
+  const containerRef = useRef(null)
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12">
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -33,11 +37,19 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="font-mono text-6xl md:text-7xl font-bold mb-6 text-slate-100">
-            Kushal
+            <VariableProximity
+              label={'Kushal'}
+              className={'variable-proximity-demo'}
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={containerRef}
+              radius={100}
+              falloff='linear'
+            />
           </h1>
         </motion.div>
 
-        {/* Typewriter effect */}
+        {/* Rotating text effect */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -45,25 +57,28 @@ export default function Hero() {
           className="h-24 md:h-32 flex items-center justify-center mb-8"
         >
           <div className="text-2xl md:text-4xl font-mono text-slate-300">
-            <span className="gradient-text">
-              <Typewriter
-                words={[
-                  'Full-Stack Developer',
-                  'AI Engineer | LangChain & LangGraph',
-                  'RAG Application Builder',
-                  'AWS DevOps & Docker',
-                  'Production-Ready Code',
-                ]}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={50}
-                deleteSpeed={30}
-                delaySpeed={2000}
-              />
-            </span>
+            <RotatingText
+              texts={[
+                'Full-Stack Developer',
+                'AI Engineer | LangChain & LangGraph',
+                'RAG Application Specialist',
+                'MERN & FastAPI Expert',
+                'MCP Developer',
+                'Production-Ready Systems',
+              ]}
+              mainClassName="bg-[#a855f7] px-5 py-2 rounded-lg text-white font-bold justify-center overflow-hidden"
+              staggerFrom={"last"}
+              initial={{ y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "-120%", opacity: 0 }}
+              staggerDuration={0.025}
+              splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+              transition={{ type: "spring", damping: 30, stiffness: 400 }}
+              rotationInterval={3000}
+            />
           </div>
         </motion.div>
+
 
         {/* Subtitle */}
         <motion.p
@@ -72,7 +87,7 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-lg md:text-xl text-slate-400 mb-4 max-w-3xl mx-auto"
         >
-          B.Tech Student at NIT Karnataka Surathkal | Building scalable systems, not just demos
+          Second-year B.Tech at NITK Surathkal | Shipped full-stack apps & AI systems using MERN, FastAPI, and RAG pipelines.
         </motion.p>
 
         {/* Achievement highlight */}
@@ -85,6 +100,7 @@ export default function Hero() {
           {[
             { label: 'JEE Mains', value: '99.121%ile' },
             { label: 'JEE Adv', value: 'AIR 17803' },
+            { label: 'IISER', value: 'AIR 2053' },
             { label: 'KCET', value: 'AIR 3715' },
           ].map((item) => (
             <div
@@ -105,10 +121,10 @@ export default function Hero() {
           className="flex gap-4 justify-center flex-wrap mb-16"
         >
           <a
-            href="#work"
+            href="#Projects"
             className="glass-effect px-8 py-3 rounded-lg font-mono text-sm font-semibold hover:bg-slate-700/30 border border-slate-600 transition"
           >
-            View Work
+            View Projects
           </a>
           <a
             href="https://github.com/kushalkambar5"
@@ -132,3 +148,4 @@ export default function Hero() {
     </section>
   )
 }
+

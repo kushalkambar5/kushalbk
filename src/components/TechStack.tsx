@@ -1,144 +1,138 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { Spotlight, SpotLightItem } from './ui/spotlight'
+import ScrollFloat from './ui/ScrollFloat'
+import ScrollVelocity from './ui/ScrollVelocity'
 
 const TECH_CATEGORIES = [
   {
-    name: 'Frontend',
-    color: 'from-blue-500 to-cyan-500',
-    items: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    name: 'Languages',
+    techs: [
+      { name: 'C++', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+      { name: 'Python', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+      { name: 'JavaScript', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+    ],
   },
   {
-    name: 'Backend',
-    color: 'from-purple-500 to-pink-500',
-    items: ['Node.js', 'Express.js', 'MongoDB', 'REST APIs'],
+    name: 'Web & Backend',
+    techs: [
+      { name: 'React', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+      { name: 'Node.js', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+      { name: 'FastAPI', logo: 'https://fastapi.tiangolo.com/img/logo-margin/logo-teal.svg' },
+      { name: 'Redux', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg' },
+      { name: 'Tailwind', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg' },
+    ],
   },
   {
-    name: 'AI & ML',
-    color: 'from-orange-500 to-red-500',
-    items: ['LangChain', 'LangGraph', 'RAG Applications', 'Prompt Engineering'],
+    name: 'Databases',
+    techs: [
+      { name: 'MongoDB', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+      { name: 'PostgreSQL', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+      { name: 'QdrantDB', logo: 'https://qdrant.tech/img/qdrant-logo.svg' },
+    ],
   },
   {
-    name: 'Infrastructure',
-    color: 'from-green-500 to-emerald-500',
-    items: ['AWS EC2/S3', 'Docker', 'Beanstalk', 'CI/CD'],
+    name: 'GenAI & RAG',
+    techs: [
+      { name: 'LangChain', logo: 'https://assets.zenml.io/webflow/64a817a2e7e2208272d1ce30/986b08b5/68adafb26944ec2a46778809_langchain.png' },
+      { name: 'LangGraph', logo: 'https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/langgraph-color.png' },
+      { name: 'LangSmith', logo: 'https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-png/dark/langsmith-color.png' },
+    ],
   },
   {
-    name: 'Tools & Libraries',
-    color: 'from-indigo-500 to-purple-500',
-    items: ['Zod', 'Redux', 'Winston', 'Rate Limiting'],
+    name: 'Cloud & DevOps',
+    techs: [
+      { name: 'AWS', logo: 'https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
+      { name: 'Docker', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+      { name: 'Git', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+      { name: 'GitHub', logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg' },
+    ],
   },
   {
-    name: 'Platforms',
-    color: 'from-yellow-500 to-amber-500',
-    items: ['Google Cloud', 'Azure', 'AWS', 'Docker Registry'],
+    name: 'Currently Learning',
+    techs: [
+      { name: 'AI-ML', logo: 'https://static.vecteezy.com/system/resources/thumbnails/035/742/223/small/artificial-intelligent-icon-line-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg' },
+    ],
   },
 ]
 
 export default function TechStack() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  }
-
   return (
-    <div className="space-y-12">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="font-mono text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+    <div className="space-y-12" id="stack">
+      <div className="flex flex-col items-center">
+        <ScrollFloat
+          animationDuration={1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=40%'
+          stagger={0.03}
+          containerClassName="mb-4 text-center"
+          textClassName="font-mono text-4xl md:text-5xl font-bold text-slate-100"
+        >
           Tech Stack
-        </h2>
+        </ScrollFloat>
         <div className="h-1 w-20 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" />
-        <p className="text-slate-400 mt-4">
-          Production-grade technologies for building scalable systems
-        </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        {TECH_CATEGORIES.map((category, idx) => (
-          <motion.div
-            key={category.name}
-            variants={cardVariants}
-            onHoverStart={() => setHoveredIndex(idx)}
-            onHoverEnd={() => setHoveredIndex(null)}
-            className="group relative"
-          >
-            <div className="glass-effect rounded-xl p-6 overflow-hidden h-full transition-all duration-300"
-              style={{
-                boxShadow: hoveredIndex === idx
-                  ? '0 20px 40px rgba(0, 0, 0, 0.5)'
-                  : undefined,
-              }}
-            >
-              {/* Animated gradient background on hover */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity"
-                style={{
-                  background: `linear-gradient(135deg, ${category.color})`,
-                }}
-              />
-
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className={`w-3 h-3 rounded-full bg-gradient-to-r ${category.color}`}
-                  />
-                  <h3 className="font-mono font-bold text-lg text-slate-100">
-                    {category.name}
-                  </h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {TECH_CATEGORIES.map((category) => (
+          <div key={category.name} className="relative bg-black rounded-xl overflow-hidden border border-slate-900 group">
+            <Spotlight className="w-full h-full" ProximitySpotlight={true}>
+              <SpotLightItem>
+                <div className="relative text-center z-10 p-8 rounded-lg w-full bg-[url('https://res.cloudinary.com/dzl9yxixg/image/upload/sub-grid_hnhyvi.png')] bg-cover bg-black h-full flex flex-col items-center">
+                  <div className="flex flex-col items-center mb-8">
+                    <h1 className="text-2xl font-semibold tracking-tight text-white mt-4">
+                      {category.name}
+                    </h1>
+                  </div>
+                  
+                  <div className="grid grid-cols-3 gap-6 w-full mt-auto">
+                    {category.techs.map((tech) => (
+                      <div key={tech.name} className="flex flex-col items-center gap-2 group/tech">
+                        <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-300 transform hover:scale-150 z-20">
+                          <img
+                            src={tech.logo}
+                            alt={tech.name}
+                            className="w-full h-full object-contain"
+                            onError={(e) => {
+                              // Fallback for missing logos
+                              e.currentTarget.src = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg'
+                            }}
+                          />
+                        </div>
+                        <span className="text-[10px] md:text-xs font-mono text-slate-500 group-hover/tech:text-slate-300 transition-colors truncate w-full text-center">
+                          {tech.name}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="space-y-2">
-                  {category.items.map((item, itemIdx) => (
-                    <motion.div
-                      key={item}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{
-                        delay: itemIdx * 0.05,
-                        duration: 0.4,
-                      }}
-                      viewport={{ once: true }}
-                      className="flex items-center gap-2"
-                    >
-                      <div className="w-1 h-1 rounded-full bg-slate-400" />
-                      <span className="text-slate-300 text-sm font-mono">
-                        {item}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+              </SpotLightItem>
+            </Spotlight>
+          </div>
         ))}
-      </motion.div>
+      </div>
+
+      {/* Tech Stack Scroll Velocity Animation */}
+      <div className="pt-12 border-t border-slate-900/50 overflow-hidden relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] w-screen">
+        <ScrollVelocity
+          texts={[
+            <div className="flex gap-16 items-center px-4 pr-16">
+              {TECH_CATEGORIES.flatMap(cat => cat.techs).map(tech => (
+                <img 
+                  key={tech.name} 
+                  src={tech.logo} 
+                  alt={tech.name} 
+                  title={tech.name}
+                  className="w-16 h-16 object-contain transition-all duration-300 transform hover:scale-125" 
+                />
+              ))}
+            </div>
+          ]}
+          velocity={50}
+          numCopies={8}
+          className="py-4"
+        />
+      </div>
     </div>
   )
 }

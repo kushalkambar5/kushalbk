@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Cloud, Database, Box, GitBranch, Server } from 'lucide-react'
+import ScrollFloat from './ui/ScrollFloat'
 
 const DEPLOYMENT_ITEMS = [
   {
@@ -23,7 +24,7 @@ const DEPLOYMENT_ITEMS = [
   {
     title: 'Version Control',
     icon: GitBranch,
-    items: ['Git Workflow', 'CI/CD Pipelines', 'Deployment'],
+    items: ['Git Projectsflow', 'CI/CD Pipelines', 'Deployment'],
     color: 'text-purple-400',
   },
 ]
@@ -57,20 +58,24 @@ export default function DeploymentSection() {
 
   return (
     <div className="space-y-16">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="font-mono text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+      <div>
+        <ScrollFloat
+          animationDuration={1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=40%'
+          stagger={0.03}
+          containerClassName="mb-4"
+          textClassName="font-mono text-4xl md:text-5xl font-bold text-slate-100"
+        >
           Deployment & Architecture
-        </h2>
+        </ScrollFloat>
         <div className="h-1 w-20 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" />
         <p className="text-slate-400 mt-4">
           Production-ready infrastructure with scalable, containerized systems
         </p>
-      </motion.div>
+      </div>
+
 
       {/* System Architecture Grid */}
       <motion.div

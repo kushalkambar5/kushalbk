@@ -1,42 +1,43 @@
 import { motion } from 'framer-motion'
 import { Trophy, Target, Zap } from 'lucide-react'
+import ScrollFloat from './ui/ScrollFloat'
 
 const ACHIEVEMENTS = [
   {
     icon: Trophy,
     title: 'JEE Mains 2025',
     value: '99.121%ile',
-    description: 'Top percentile scorer',
+    description: 'All India Rank Scorer',
     color: 'from-yellow-500 to-orange-500',
   },
   {
     icon: Target,
     title: 'JEE Advanced 2025',
     value: 'AIR 17803',
-    description: 'All India Rank',
+    description: 'IIT Entrance Rank',
     color: 'from-purple-500 to-pink-500',
-  },
-  {
-    icon: Zap,
-    title: 'KCET 2025',
-    value: 'AIR 3715',
-    description: 'Karnataka entrance',
-    color: 'from-blue-500 to-cyan-500',
   },
   {
     icon: Target,
     title: 'IISER 2025',
     value: 'AIR 2053',
-    description: 'Aptitude test rank',
+    description: 'Aptitude Test Rank',
     color: 'from-green-500 to-emerald-500',
+  },
+  {
+    icon: Zap,
+    title: 'KCET 2025',
+    value: 'AIR 3715',
+    description: 'Karnataka State Rank',
+    color: 'from-blue-500 to-cyan-500',
   },
 ]
 
 const METRICS = [
-  { label: 'Projects Built', value: '5+', icon: '📊' },
-  { label: 'Tech Stack', value: '15+', icon: '⚙️' },
-  { label: 'Production Deployments', value: '3+', icon: '🚀' },
-  { label: 'Years of Experience', value: '1+', icon: '⏱️' },
+  { label: 'AI Projects', value: '8+', icon: '🤖' },
+  { label: 'Full-Stack Apps', value: '5+', icon: '🌐' },
+  { label: 'Client Projects', value: '3+', icon: '🤝' },
+  { label: 'Technologies', value: '20+', icon: '⚙️' },
 ]
 
 export default function MetricsCard() {
@@ -63,20 +64,23 @@ export default function MetricsCard() {
 
   return (
     <div className="space-y-16">
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <h2 className="font-mono text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+      <div>
+        <ScrollFloat
+          animationDuration={1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=40%'
+          stagger={0.03}
+          containerClassName="mb-4"
+          textClassName="font-mono text-4xl md:text-5xl font-bold text-slate-100"
+        >
           Competitive Achievements
-        </h2>
+        </ScrollFloat>
         <div className="h-1 w-20 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" />
         <p className="text-slate-400 mt-4">
           Proven excellence in competitive exams and technical assessments
         </p>
-      </motion.div>
+      </div>
 
       {/* Achievement Cards */}
       <motion.div
@@ -182,7 +186,7 @@ export default function MetricsCard() {
           Engineering Philosophy
         </h3>
         <p className="text-slate-300 leading-relaxed font-mono text-sm md:text-base">
-          I work like a <span className="text-slate-100 font-bold">junior full-stack engineer</span>, not a student
+          I Projects like a <span className="text-slate-100 font-bold">junior full-stack engineer</span>, not a student
           experimenting with tutorials. I've built and deployed real MERN-stack applications with clean backend
           architecture, authentication, REST APIs, and AWS deployment. I understand how systems behave in production,
           not just how they look in demos. I pick things up fast, take ownership, and don't need constant

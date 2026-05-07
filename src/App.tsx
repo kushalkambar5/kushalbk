@@ -4,6 +4,7 @@ import TechStack from './components/TechStack'
 import DeploymentSection from './components/DeploymentSection'
 import MetricsCard from './components/MetricsCard'
 import Projects from './components/Projects'
+import Education from './components/Education'
 import Footer from './components/Footer'
 
 export default function App() {
@@ -20,9 +21,10 @@ export default function App() {
           <div className="font-mono font-bold text-xl gradient-text">KB</div>
           <div className="hidden md:flex gap-8">
             {[
-              { label: 'Work', href: '#work' },
+              { label: 'Projects', href: '#Projects' },
               { label: 'Stack', href: '#stack' },
               { label: 'Metrics', href: '#metrics' },
+              { label: 'Education', href: '#education' },
             ].map((item) => (
               <a
                 key={item.label}
@@ -45,9 +47,9 @@ export default function App() {
           <TechStack />
         </section>
 
-        {/* Deployment Section */}
-        <section className="max-w-7xl mx-auto px-6 py-32">
-          <DeploymentSection />
+        {/* Projects Section */}
+        <section id="Projects" className="max-w-7xl mx-auto px-6 py-32">
+          <Projects />
         </section>
 
         {/* Metrics Section */}
@@ -55,9 +57,14 @@ export default function App() {
           <MetricsCard />
         </section>
 
-        {/* Projects Section */}
-        <section id="work" className="max-w-7xl mx-auto px-6 py-32">
-          <Projects />
+        {/* Education Section */}
+        <section id="education" className="max-w-7xl mx-auto px-6 py-32">
+          <Education />
+        </section>
+
+        {/* Deployment Section */}
+        <section className="max-w-7xl mx-auto px-6 py-32">
+          <DeploymentSection />
         </section>
       </main>
 
