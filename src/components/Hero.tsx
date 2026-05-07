@@ -3,13 +3,28 @@ import RotatingText from './ui/RotatingText'
 import { ChevronDown } from 'lucide-react'
 import { useRef } from 'react'
 import VariableProximity from './VariableProximity'
+import GhostCursor from './ui/GhostCursor'
 
 export default function Hero() {
   const containerRef = useRef(null)
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12">
-      {/* Animated background elements */}
+    <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
+      {/* Ghost Cursor Effect */}
+      <GhostCursor
+        color="#a855f7"
+        brightness={1.2}
+        edgeIntensity={0.2}
+        trailLength={60}
+        inertia={0.6}
+        grainIntensity={0.03}
+        bloomStrength={0.2}
+        bloomRadius={1.2}
+        bloomThreshold={0.05}
+        fadeDelayMs={800}
+        fadeDurationMs={1200}
+        zIndex={0}
+      />
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
@@ -90,28 +105,6 @@ export default function Hero() {
           Second-year B.Tech at NITK Surathkal | Shipped full-stack apps & AI systems using MERN, FastAPI, and RAG pipelines.
         </motion.p>
 
-        {/* Achievement highlight */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="flex justify-center gap-6 mb-12 text-sm md:text-base flex-wrap"
-        >
-          {[
-            { label: 'JEE Mains', value: '99.121%ile' },
-            { label: 'JEE Adv', value: 'AIR 17803' },
-            { label: 'IISER', value: 'AIR 2053' },
-            { label: 'KCET', value: 'AIR 3715' },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="glass-effect px-4 py-2 rounded-lg"
-            >
-              <div className="font-mono text-xs text-slate-400">{item.label}</div>
-              <div className="font-mono font-bold text-slate-100">{item.value}</div>
-            </div>
-          ))}
-        </motion.div>
 
         {/* CTA Buttons */}
         <motion.div

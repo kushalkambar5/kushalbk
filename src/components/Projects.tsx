@@ -94,12 +94,12 @@ const StickyProjectCard = ({
   return (
     <div
       ref={container}
-      className="sticky top-0 flex items-center justify-center min-h-screen py-20"
+      className="sticky top-0 flex items-center justify-center min-h-[70vh] py-8"
     >
       <motion.div
         style={{
           scale,
-          top: `calc(10vh + ${i * 40}px)`,
+          top: `calc(8vh + ${i * 40}px)`,
         }}
         className="glass-effect rounded-2xl overflow-hidden hover:shadow-glass-dark transition-all duration-300 group w-full max-w-4xl relative origin-top"
       >
@@ -194,8 +194,8 @@ export default function Projects() {
 
   return (
     <ReactLenis root>
-      <div className="space-y-12">
-        <div className="mb-20 flex flex-col items-center">
+      <div>
+        <div className="mb-6 flex flex-col items-center">
           <ScrollFloat
             animationDuration={1}
             ease='back.inOut(2)'
