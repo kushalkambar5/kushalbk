@@ -109,7 +109,7 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-lg md:text-xl text-slate-400 mb-4 max-w-3xl mx-auto"
         >
-          Second-year B.Tech at NITK Surathkal | Shipped full-stack apps & AI systems using MERN, FastAPI, and RAG pipelines.
+          Second-year B.Tech at NITK Surathkal | Engineering production-ready AI systems and scalable web applications.
         </motion.p>
 
 

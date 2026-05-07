@@ -8,8 +8,17 @@ import {
   ExternalLink,
   Code2
 } from "lucide-react";
+import { useLenis } from 'lenis/react';
 
 export default function Footer() {
+  const lenis = useLenis();
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      lenis?.scrollTo(href);
+    }
+  };
   const socialLinks = [
     { 
       name: "GitHub", 
@@ -147,6 +156,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <a
                         href={link.href}
+                        onClick={(e) => handleScroll(e, link.href)}
                         style={{
                           color: "#0a0a0a",
                           textDecoration: "none",
@@ -358,9 +368,6 @@ export default function Footer() {
               flexWrap: "wrap",
             }}
           >
-            <a href="#" style={{ color: "#0a0a0a", textDecoration: "none" }}>Privacy Policy</a>
-            <a href="#" style={{ color: "#0a0a0a", textDecoration: "none" }}>Terms of Service</a>
-            <a href="mailto:kushalkambar07@gmail.com" style={{ color: "#0a0a0a", textDecoration: "none" }}>Support</a>
           </div>
         </div>
       </div>

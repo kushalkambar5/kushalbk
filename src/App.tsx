@@ -8,10 +8,11 @@ import Education from './components/Education'
 import Footer from './components/Footer'
 import ScrollBaseAnimation from './components/ui/scroll-text-marque'
 import HorizontalScroll from './components/HorizontalScroll'
-import { ReactLenis } from 'lenis/react'
+import { ReactLenis, useLenis } from 'lenis/react'
 
 export default function App() {
   const { scrollY } = useScroll();
+  const lenis = useLenis();
   const [isVisible, setIsVisible] = useState(true);
   const [isAtTop, setIsAtTop] = useState(true);
 
@@ -28,6 +29,13 @@ export default function App() {
     // Check if we are at the top of the page
     setIsAtTop(latest < 50);
   });
+
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      lenis?.scrollTo(href);
+    }
+  };
 
   return (
     <ReactLenis root>
@@ -54,6 +62,7 @@ export default function App() {
                 <a
                   key={item.label}
                   href={item.href}
+                  onClick={(e) => handleScroll(e, item.href)}
                   className="text-slate-400 hover:text-slate-100 transition font-mono text-sm"
                 >
                   {item.label}
