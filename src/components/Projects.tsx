@@ -3,10 +3,12 @@ import { ExternalLink, Github } from 'lucide-react'
 import React, { useRef } from 'react'
 import ReactLenis from 'lenis/react'
 import ScrollFloat from './ui/ScrollFloat'
+import TradingCard from './ui/TradingCard'
 
 const PROJECTS = [
   {
-    title: 'Horyn AI',
+    title: 'HORYN AI',
+    id: '137',
     role: 'Full-Stack & AI Developer',
     date: '2025 - Present',
     tech: ['MERN', 'FastAPI', 'LangChain', 'LangGraph', 'PostgreSQL', 'RAG', 'Mem0'],
@@ -23,7 +25,8 @@ const PROJECTS = [
     color: 'from-blue-500 to-cyan-500',
   },
   {
-    title: 'Glosupchain',
+    title: 'GLOSUPCHAIN',
+    id: '042',
     role: 'Backend & AI Architect',
     date: '2025',
     tech: ['Next.js', 'Node.js', 'FastAPI', 'LangChain', 'LangGraph', 'PostgreSQL', 'Drizzle'],
@@ -40,7 +43,8 @@ const PROJECTS = [
     color: 'from-purple-500 to-pink-500',
   },
   {
-    title: 'Fundify',
+    title: 'FUNDIFY',
+    id: '088',
     role: 'Full-Stack Developer',
     date: '2024 - 2025',
     tech: ['React', 'Express.js', 'FastAPI', 'MongoDB', 'Gemini', 'ChromaDB'],
@@ -57,7 +61,8 @@ const PROJECTS = [
     color: 'from-green-500 to-emerald-500',
   },
   {
-    title: 'Movie Recommendation',
+    title: 'MOVREC',
+    id: '015',
     role: 'AI Developer',
     date: '2025',
     tech: ['Python', 'LangChain', 'Qdrant DB', 'LLM'],
@@ -94,92 +99,24 @@ const StickyProjectCard = ({
   return (
     <div
       ref={container}
-      className="sticky top-0 flex items-center justify-center min-h-[70vh] py-8"
+      className="sticky top-0 flex items-center justify-center min-h-[80vh] py-8"
     >
       <motion.div
         style={{
           scale,
-          top: `calc(8vh + ${i * 40}px)`,
+          top: `calc(10vh + ${i * 40}px)`,
         }}
-        className="glass-effect rounded-2xl overflow-hidden hover:shadow-glass-dark transition-all duration-300 group w-full max-w-4xl relative origin-top"
+        className="w-full max-w-4xl relative origin-top"
       >
-        {/* Header with gradient */}
-        <div className={`h-2 bg-gradient-to-r ${project.color}`} />
-
-        <div className="p-8 md:p-12">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
-            <div>
-              <h3 className="font-mono text-2xl md:text-3xl font-bold text-slate-100 mb-2">
-                {project.title}
-              </h3>
-              <div className="flex gap-4 text-sm text-slate-400 font-mono flex-wrap">
-                <span>• {project.role}</span>
-                <span>• {project.date}</span>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <motion.a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition"
-              >
-                <ExternalLink className="w-5 h-5 text-slate-300" />
-              </motion.a>
-              <motion.a
-                href={project.github}
-                whileHover={{ scale: 1.1 }}
-                className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition"
-              >
-                <Github className="w-5 h-5 text-slate-300" />
-              </motion.a>
-            </div>
-          </div>
-
-          <p className="text-slate-300 leading-relaxed mb-6">{project.description}</p>
-
-          {/* Tech Stack */}
-          <div className="mb-6 pb-6 border-b border-slate-700/50">
-            <div className="flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  viewport={{ once: true }}
-                  className="px-3 py-1 bg-slate-800/50 border border-slate-700 rounded-lg text-xs font-mono text-slate-300 hover:border-slate-500 transition"
-                >
-                  {tech}
-                </motion.span>
-              ))}
-            </div>
-          </div>
-
-          {/* Achievements */}
-          <div>
-            <h4 className="font-mono text-sm font-bold text-slate-100 mb-3">
-              Key Achievements
-            </h4>
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {project.achievements.map((achievement) => (
-                <motion.li
-                  key={achievement}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4 }}
-                  viewport={{ once: true }}
-                  className="flex items-start gap-3 text-sm text-slate-300"
-                >
-                  <span className="w-4 h-4 rounded-full border border-slate-500 mt-0.5 flex-shrink-0" />
-                  <span>{achievement}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <TradingCard 
+          title={project.title}
+          id={project.id}
+          role={project.role}
+          description={project.description}
+          tech={project.tech}
+          link={project.link}
+          github={project.github}
+        />
       </motion.div>
     </div>
   );

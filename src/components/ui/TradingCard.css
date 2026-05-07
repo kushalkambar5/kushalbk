@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.trading-card-container {
+  --card-bg: #f5f5f0;
+  --accent-pink: #f43f5e;
+  --accent-green: #bef264;
+  --text-dark: #475569;
+  
+  width: 100%;
+  max-width: 900px;
+  aspect-ratio: 1.6 / 1;
+  background-color: var(--card-bg);
+  border-radius: 2rem;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), inset 0 0 100px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Noise Texture Overlay */
+.trading-card-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.trading-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Top Right Number */
+.trading-card-id {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 1.5rem;
+  color: var(--accent-pink);
+}
+
+/* Starburst Graphic */
+.trading-card-starburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  background-color: var(--accent-green);
+  clip-path: polygon(50% 0%, 54% 17%, 69% 6%, 66% 23%, 86% 20%, 75% 35%, 95% 42%, 79% 51%, 88% 69%, 71% 68%, 70% 88%, 56% 77%, 50% 95%, 44% 77%, 30% 88%, 29% 68%, 12% 69%, 21% 51%, 5% 42%, 25% 35%, 14% 20%, 34% 23%, 31% 6%, 46% 17%);
+  opacity: 0.8;
+  z-index: 0;
+}
+
+/* Main Title */
+.trading-card-title {
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 5rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  z-index: 2;
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: -4px;
+  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.05);
+}
+
+/* Embedded Info Styles */
+.trading-card-tech-list {
+  position: absolute;
+  top: 2.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.2rem;
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
+  white-space: nowrap;
+  letter-spacing: -1px;
+}
+
+.trading-card-footer-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-family: 'Press Start 2P', cursive, monospace;
+  font-size: 0.9rem;
+  color: var(--accent-pink);
+  opacity: 0.6;
+}
+
+.trading-card-description-box {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.trading-card-links {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+}
+
+.trading-card-link-item {
+  color: var(--text-dark);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.trading-card-link-item:hover {
+  opacity: 1;
+  color: var(--accent-pink);
+}
+
+@media (max-width: 1024px) {
+  .trading-card-title { font-size: 3.5rem; }
+  .trading-card-starburst { width: 280px; height: 280px; }
+  .trading-card-description-box { font-size: 0.75rem; width: 90%; }
+}
+
+@media (max-width: 768px) {
+  .trading-card-container {
+    aspect-ratio: 1 / 1.2;
+    padding: 1.5rem;
+  }
+  .trading-card-title { font-size: 2rem; letter-spacing: -2px; }
+  .trading-card-starburst { width: 180px; height: 180px; }
+  .trading-card-id { font-size: 0.8rem; }
+  .trading-card-role-top { font-size: 0.5rem; }
+  .trading-card-footer-text { font-size: 0.7rem; }
+  .trading-card-description-box { bottom: 3rem; font-size: 0.7rem; }
+  .trading-card-tech-list { display: none; }
+}
