@@ -226,18 +226,7 @@ export default function Projects() {
           })}
         </div>
 
-        {/* Experience Note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="glass-effect-subtle rounded-xl p-8 text-center mt-10 mb-20"
-        >
-          <p className="text-slate-400 font-mono">
-            Currently building more projects with RAG applications and GenAI integration
-          </p>
-        </motion.div>
+
       </div>
     </ReactLenis>
   )

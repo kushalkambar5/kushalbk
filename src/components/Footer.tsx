@@ -1,202 +1,370 @@
-import { motion } from 'framer-motion'
-import { Github, Linkedin, Mail, ExternalLink, Code2 } from 'lucide-react'
-
-const SOCIAL_LINKS = [
-  {
-    name: 'GitHub',
-    icon: Github,
-    url: 'https://github.com/kushalkambar5',
-    handle: 'kushalkambar5',
-    color: 'hover:text-slate-100',
-  },
-  {
-    name: 'LinkedIn',
-    icon: Linkedin,
-    url: 'https://linkedin.com/in/kushalbk',
-    handle: 'kushalbk',
-    color: 'hover:text-blue-400',
-  },
-  {
-    name: 'Email',
-    icon: Mail,
-    url: 'mailto:kushalkambar07@gmail.com',
-    handle: 'kushalkambar07@gmail.com',
-    color: 'hover:text-orange-400',
-  },
-  {
-    name: 'CodeForces',
-    icon: Code2,
-    url: '#',
-    handle: 'kushalbkambar',
-    color: 'hover:text-red-400',
-  },
-  {
-    name: 'LeetCode',
-    icon: Code2,
-    url: 'https://leetcode.com/Kushalk_05',
-    handle: 'Kushalk_05',
-    color: 'hover:text-yellow-400',
-  },
-]
-
-const QUICK_LINKS = [
-  { label: 'Home', href: '#' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Projects', href: '#Projects' },
-  { label: 'Education', href: '#education' },
-]
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Instagram,
+  ExternalLink,
+  Code2
+} from "lucide-react";
 
 export default function Footer() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
+  const socialLinks = [
+    { 
+      name: "GitHub", 
+      icon: Github, 
+      url: "https://github.com/kushalkambar5" 
     },
-  }
+    {
+      name: "X",
+      icon: ({ size = 20, ...props }: any) => (
+        <svg
+          viewBox="0 0 24 24"
+          width={size}
+          height={size}
+          fill="currentColor"
+          {...props}
+        >
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      ),
+      url: "https://x.com/kushal___5",
+    },
+    {
+      name: "Instagram",
+      icon: Instagram,
+      url: "https://www.instagram.com/kushal.kambar.5/",
+    },
+    {
+      name: "Linkedin",
+      icon: Linkedin,
+      url: "https://www.linkedin.com/in/kushalbk/",
+    },
+    {
+      name: "LeetCode",
+      icon: Code2,
+      url: "https://leetcode.com/Kushalk_05",
+    }
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: 'easeOut' },
-    },
-  }
+  const quickLinks = [
+    { label: "Home", href: "#" },
+    { label: "Stack", href: "#stack" },
+    { label: "Projects", href: "#Projects" },
+    { label: "Education", href: "#education" },
+  ];
 
   return (
-    <footer className="border-t border-slate-800/50 bg-obsidian/50 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-6 py-20">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="space-y-12"
+    <footer
+      style={{
+        padding: "0",
+        display: "flex",
+        justifyContent: "center",
+        backgroundColor: "#4ade80",
+      }}
+    >
+      <div
+        className="w-full px-6 md:px-16 py-6 md:py-8"
+        style={{
+          backgroundColor: "#eaff4b", // Vibrant lime yellow as requested
+          borderRadius: "40px 40px 0 0",
+          color: "#0a0a0a",
+          boxShadow: "0 -10px 40px rgba(0,0,0,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            gap: "4rem",
+            flexWrap: "wrap",
+            marginBottom: "2rem",
+          }}
         >
-          {/* Main Section */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {/* Brand */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <div className="font-mono font-bold text-3xl gradient-text mb-4">
-                KB
-              </div>
-              <p className="text-slate-400 text-sm leading-relaxed">
-                Full-stack developer & AI engineer crafting production-grade systems. Currently at NITK Surathkal.
-              </p>
-            </motion.div>
-
-            {/* Quick Links */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <h4 className="font-mono font-bold text-slate-100 mb-4">Navigation</h4>
-              <ul className="space-y-3">
-                {QUICK_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      className="text-slate-400 hover:text-slate-100 transition text-sm font-mono flex items-center gap-2 group"
-                    >
-                      <span className="opacity-0 group-hover:opacity-100 transition">→</span>
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            {/* Info */}
-            <motion.div variants={itemVariants} className="md:col-span-1">
-              <h4 className="font-mono font-bold text-slate-100 mb-4">Contact</h4>
-              <div className="space-y-3">
-                <p className="text-slate-400 text-sm font-mono">
-                  📍 NITK Surathkal, Karnataka, India
-                </p>
-                <p className="text-slate-400 text-sm font-mono">
-                  📧 kushalkambar07@gmail.com
-                </p>
-                <p className="text-slate-400 text-sm font-mono">
-                  📱 +91-9035035884
-                </p>
-              </div>
-            </motion.div>
+          {/* Logo Section */}
+          <div style={{ width: "220px", flexShrink: 0 }}>
+            <h2
+              style={{
+                fontSize: "2.5rem",
+                fontWeight: "900",
+                letterSpacing: "-0.05em",
+                margin: 0,
+                color: "#0a0a0a",
+                fontFamily: "var(--font-mono)"
+              }}
+            >
+              KB.
+            </h2>
           </div>
 
-          {/* Social Links */}
-          <motion.div variants={itemVariants} className="py-8 border-t border-slate-800/50">
-            <h4 className="font-mono font-bold text-slate-100 mb-6">Connect</h4>
-            <div className="flex flex-wrap gap-4">
-              {SOCIAL_LINKS.map((social) => {
-                const IconComponent = social.icon
-                return (
-                  <motion.a
-                    key={social.name}
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.15, y: -3 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`glass-effect p-4 rounded-lg transition group ${social.color}`}
-                    title={social.name}
-                  >
-                    <IconComponent className="w-5 h-5 text-slate-400 group-hover:text-slate-100 transition" />
-                  </motion.a>
-                )
-              })}
-            </div>
+          {/* Main Content */}
+          <div style={{ flex: 1, minWidth: "300px" }}>
+            <h1
+              style={{
+                fontSize: "clamp(2rem, 4vw, 3.5rem)",
+                fontWeight: "700",
+                lineHeight: "1.1",
+                marginBottom: "2.5rem",
+                color: "#0a0a0a",
+                maxWidth: "850px",
+                letterSpacing: "-0.02em"
+              }}
+            >
+              Building high-performance systems at the intersection of AI and Web development.
+            </h1>
 
-            {/* Social Handles */}
-            <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-xs">
-              {SOCIAL_LINKS.map((social) => (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+                gap: "3rem",
+              }}
+            >
+              {/* Column 1: Navigation */}
+              <div>
+                <h4
+                  style={{
+                    fontWeight: "800",
+                    marginBottom: "1.25rem",
+                    fontSize: "1rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Navigation
+                </h4>
+                <ul
+                  style={{
+                    listStyle: "none",
+                    padding: 0,
+                    margin: "0 0 1rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.75rem",
+                  }}
+                >
+                  {quickLinks.map((link) => (
+                    <li key={link.label}>
+                      <a
+                        href={link.href}
+                        style={{
+                          color: "#0a0a0a",
+                          textDecoration: "none",
+                          fontSize: "1rem",
+                          fontWeight: "600",
+                          opacity: 0.8,
+                          transition: "opacity 0.2s"
+                        }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.8")}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <div style={{ display: "flex", gap: "0.75rem" }}>
+                  {socialLinks.map((social) => (
+                    <motion.a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "50%",
+                        backgroundColor: "#ffffff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#0a0a0a",
+                        boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+                      }}
+                    >
+                      <social.icon size={20} />
+                    </motion.a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Column 2: Contact */}
+              <div>
+                <h4
+                  style={{
+                    fontWeight: "800",
+                    marginBottom: "1.25rem",
+                    fontSize: "1rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Get in touch
+                </h4>
+                <p
+                  style={{
+                    margin: "0 0 0.25rem",
+                    fontSize: "0.95rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  Email me at
+                </p>
                 <a
-                  key={social.name}
-                  href={social.url}
+                  href="mailto:kushalkambar07@gmail.com"
+                  style={{
+                    margin: "0 0 1rem",
+                    fontSize: "1.1rem",
+                    fontWeight: "800",
+                    color: "#0a0a0a",
+                    textDecoration: "none",
+                    display: "block"
+                  }}
+                >
+                  kushalkambar07@gmail.com
+                </a>
+                <p
+                  style={{
+                    margin: "0.5rem 0 0.25rem",
+                    fontSize: "0.95rem",
+                    fontWeight: "500",
+                  }}
+                >
+                  Call or WhatsApp
+                </p>
+                <p
+                  style={{
+                    margin: "0 0 1rem",
+                    fontSize: "1.1rem",
+                    fontWeight: "800",
+                  }}
+                >
+                  +91 9035035884
+                </p>
+                <motion.a
+                  href="https://drive.google.com/file/d/1BwFsC2thamqpx_0g2fP5_7Z2HANNaJoY/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-effect-subtle p-3 rounded-lg hover:bg-slate-700/30 transition text-center font-mono text-slate-300"
+                  whileHover={{ x: 5 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "1rem",
+                    fontWeight: "700",
+                    color: "#0a0a0a",
+                    textDecoration: "none",
+                    marginTop: "1.5rem"
+                  }}
                 >
-                  <div className="font-bold text-slate-100">{social.name}</div>
-                  <div className="text-slate-500 mt-1 truncate">{social.handle}</div>
-                </a>
-              ))}
-            </div>
-          </motion.div>
+                  View Resume <ExternalLink size={16} />
+                </motion.a>
+                <h3
+                  style={{
+                    fontSize: "2.5rem",
+                    fontWeight: "900",
+                    margin: "1.5rem 0 0",
+                    textTransform: "uppercase",
+                    letterSpacing: "-0.02em",
+                    opacity: 0.9
+                  }}
+                >
+                  KUSHAL.
+                </h3>
+              </div>
 
-          {/* Bottom Section */}
-          <motion.div
-            variants={itemVariants}
-            className="pt-8 border-t border-slate-800/50 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+              {/* Column 3: Location */}
+              <div>
+                <h4
+                  style={{
+                    fontWeight: "800",
+                    marginBottom: "1.25rem",
+                    fontSize: "1rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.05em"
+                  }}
+                >
+                  Location
+                </h4>
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1.5rem" }}>
+                  <div style={{ 
+                    width: "48px", 
+                    height: "48px", 
+                    backgroundColor: "#fff", 
+                    borderRadius: "12px", 
+                    display: "flex", 
+                    alignItems: "center", 
+                    justifyContent: "center", 
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.05)",
+                    overflow: "hidden"
+                  }}>
+                    <img 
+                      src="https://upload.wikimedia.org/wikipedia/en/c/cc/NITK_Emblem.png" 
+                      alt="NITK Logo" 
+                      style={{ width: "80%", height: "80%", objectFit: "contain" }}
+                    />
+                  </div>
+                  <p
+                    style={{
+                      fontSize: "1rem",
+                      fontWeight: "600",
+                      margin: 0,
+                      lineHeight: "1.4"
+                    }}
+                  >
+                    NITK Surathkal<br />
+                    Mangalore, India
+                  </p>
+                </div>
+
+                <div style={{ marginTop: "1.5rem" }}>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-600 animate-pulse" />
+                    <span style={{ fontSize: "0.85rem", fontWeight: "700", opacity: 0.7 }}>
+                      Available for Internships
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+          style={{
+            borderTop: "1px solid rgba(10, 10, 10, 0.1)",
+            paddingTop: "1.5rem",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+            fontSize: "0.85rem",
+            fontWeight: "600",
+            color: "#0a0a0a",
+            opacity: 0.8
+          }}
+        >
+          <div>
+            © {new Date().getFullYear()} Kushal Basavaraj Kambar. All rights reserved.
+          </div>
+          <div
+            style={{
+              display: "flex",
+              gap: "2.5rem",
+              flexWrap: "wrap",
+            }}
           >
-            <div className="text-slate-500 text-xs font-mono">
-              © 2026 Kushal Basavaraj Kambar. All rights reserved.
-            </div>
-
-            <motion.a
-              href="https://drive.google.com/file/d/1BwFsC2thamqpx_0g2fP5_7Z2HANNaJoY/view?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 text-obsidian font-mono font-semibold rounded-lg hover:bg-slate-200 transition"
-            >
-              See Resume
-              <ExternalLink className="w-4 h-4" />
-            </motion.a>
-          </motion.div>
-
-          {/* Status Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="pt-6 text-center text-slate-500 text-xs font-mono"
-          >
-            <div className="flex justify-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span>Available for full-time roles & collaborations</span>
-            </div>
-          </motion.div>
-        </motion.div>
+            <a href="#" style={{ color: "#0a0a0a", textDecoration: "none" }}>Privacy Policy</a>
+            <a href="#" style={{ color: "#0a0a0a", textDecoration: "none" }}>Terms of Service</a>
+            <a href="mailto:kushalkambar07@gmail.com" style={{ color: "#0a0a0a", textDecoration: "none" }}>Support</a>
+          </div>
+        </div>
       </div>
     </footer>
-  )
+  );
 }
+
