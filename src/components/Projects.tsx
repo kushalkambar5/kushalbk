@@ -210,7 +210,7 @@ export default function Projects() {
           <div className="h-1 w-20 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" />
         </div>
 
-        <div ref={container} className="relative">
+        <div ref={container} className="relative pb-[50vh]">
           {PROJECTS.map((project, i) => {
             const targetScale = Math.max(0.85, 1 - (PROJECTS.length - i - 1) * 0.05);
             return (
@@ -232,7 +232,7 @@ export default function Projects() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="glass-effect-subtle rounded-xl p-8 text-center mt-20"
+          className="glass-effect-subtle rounded-xl p-8 text-center mt-10 mb-20"
         >
           <p className="text-slate-400 font-mono">
             Currently building more projects with RAG applications and GenAI integration

@@ -2,8 +2,7 @@ import { useState } from 'react'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 import Hero from './components/Hero'
 import TechStack from './components/TechStack'
-import DeploymentSection from './components/DeploymentSection'
-import MetricsCard from './components/MetricsCard'
+
 import Projects from './components/Projects'
 import Education from './components/Education'
 import Footer from './components/Footer'
@@ -46,7 +45,6 @@ export default function App() {
             {[
               { label: 'Projects', href: '#Projects' },
               { label: 'Stack', href: '#stack' },
-              { label: 'Metrics', href: '#metrics' },
               { label: 'Education', href: '#education' },
             ].map((item) => (
               <a
@@ -75,20 +73,13 @@ export default function App() {
           <Projects />
         </section>
 
-        {/* Metrics Section */}
-        <section id="metrics" className="max-w-7xl mx-auto px-6 py-32">
-          <MetricsCard />
-        </section>
 
         {/* Education Section */}
         <section id="education" className="max-w-7xl mx-auto px-6 py-32">
           <Education />
         </section>
 
-        {/* Deployment Section */}
-        <section className="max-w-7xl mx-auto px-6 py-32">
-          <DeploymentSection />
-        </section>
+
       </main>
 
       {/* Footer */}

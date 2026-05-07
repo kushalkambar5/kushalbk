@@ -43,7 +43,6 @@ const QUICK_LINKS = [
   { label: 'Home', href: '#' },
   { label: 'Stack', href: '#stack' },
   { label: 'Projects', href: '#Projects' },
-  { label: 'Achievements', href: '#metrics' },
   { label: 'Education', href: '#education' },
 ]
 
