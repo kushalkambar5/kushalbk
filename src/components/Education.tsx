@@ -2,6 +2,9 @@ import { motion } from 'framer-motion'
 import { GraduationCap, MapPin, Calendar, Award, Trophy, Target, Zap } from 'lucide-react'
 import ScrollFloat from './ui/ScrollFloat'
 import Stack from './ui/Stack'
+import ProfileCard from './ui/ProfileCard'
+import TiltCard from './ui/TiltCard'
+import kushalNitkId from '../assets/kushal_nitk_id.jpg'
 
 const EDUCATION = [
   {
@@ -74,44 +77,47 @@ export default function Education() {
     },
   }
 
-  const achievementCards = ACADEMIC_ACHIEVEMENTS.map((achievement, i) => (
-    <div
-      key={i}
-      className={`w-full h-full glass-effect flex flex-col items-center justify-center p-6 relative overflow-hidden border-t-4`}
-      style={{
-        background: 'rgba(15, 12, 22, 0.98)',
-        borderTop: '4px solid',
-        borderImage: `linear-gradient(to right, ${achievement.color.includes('yellow') ? '#eab308, #f97316' : achievement.color.includes('purple') ? '#a855f7, #ec4899' : achievement.color.includes('green') ? '#22c55e, #10b981' : '#3b82f6, #06b6d4'}) 1`
-      }}
-    >
-      {/* Background Logo Watermark */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none">
-        <img src={achievement.logo} alt="" className="w-4/5 grayscale" />
-      </div>
+  const achievementCards = [...ACADEMIC_ACHIEVEMENTS]
+    .sort((a, b) => {
+      const order = ["Mains", "IISER", "KCET", "Advanced"];
+      const indexA = order.findIndex(o => a.title.includes(o));
+      const indexB = order.findIndex(o => b.title.includes(o));
+      return indexA - indexB;
+    })
+    .map((achievement, i) => {
+      const id = (i + 1).toString().padStart(2, '0');
+      let name = achievement.title.split(' ')[0].toUpperCase();
+      if (achievement.title.includes('Mains')) name = "JEE MAINS";
+      if (achievement.title.includes('Advanced')) name = "JEE ADV";
+      if (achievement.title.includes('IISER')) name = "IISER";
+      if (achievement.title.includes('KCET')) name = "KCET";
 
-      <div className="relative z-10 flex flex-col items-center text-center w-full">
-        {/* Main Centered Logo */}
-        <div className="w-20 h-20 mb-4 rounded-xl overflow-hidden bg-white/5 p-2 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors">
-          <img 
-            src={achievement.logo} 
-            alt={achievement.title} 
-            className="max-w-full max-h-full object-contain filter drop-shadow-lg group-hover:scale-110 transition-transform duration-500"
+      return (
+        <div key={name} className="w-full h-full">
+          <ProfileCard
+            name={name}
+            role={achievement.value}
+            image={achievement.logo}
+            categories={[
+              achievement.description.split(' ')[0],
+              achievement.description.split(' ')[1] || "Exam",
+              "AIR Rank",
+              "2025"
+            ]}
+            mainTitle="rank*cert"
+            subTitle="leistungskarte"
+            id={id}
+            variant="mini"
+            themeColor={
+              achievement.color.includes('purple') ? '#a855f7' : 
+              achievement.color.includes('blue') ? '#3b82f6' : 
+              achievement.color.includes('green') ? '#22c55e' : 
+              '#eab308'
+            }
           />
         </div>
-
-        <div className="flex items-center gap-2 mb-2">
-          <div className={`p-1 rounded-md bg-slate-800/50`}>
-            <achievement.icon className="w-3 h-3 text-slate-100" />
-          </div>
-          <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">2025</span>
-        </div>
-        
-        <h4 className="text-sm font-mono font-bold text-slate-100 mb-1">{achievement.title}</h4>
-        <div className="text-2xl font-mono font-bold gradient-text mb-1 leading-none">{achievement.value}</div>
-        <p className="text-[10px] text-slate-400 font-mono max-w-[80%] mx-auto">{achievement.description}</p>
-      </div>
-    </div>
-  ));
+      );
+    });
 
   return (
     <div className="space-y-12">
@@ -128,9 +134,6 @@ export default function Education() {
           Education
         </ScrollFloat>
         <div className="h-1 w-20 bg-gradient-to-r from-slate-400 to-slate-600 rounded-full" />
-        <p className="text-slate-400 mt-4">
-          Academic foundation and competitive achievements
-        </p>
       </div>
 
       <motion.div
@@ -140,60 +143,23 @@ export default function Education() {
         viewport={{ once: true, margin: '-100px' }}
         className="grid grid-cols-1 lg:grid-cols-3 gap-8"
       >
-        {/* Education Info */}
-        <div className="lg:col-span-2 space-y-8">
-          {EDUCATION.map((edu) => (
-            <motion.div
-              key={edu.institution}
-              variants={itemVariants}
-              className="glass-effect rounded-xl overflow-hidden group h-full"
-            >
-              <div className={`h-2 bg-gradient-to-r ${edu.color}`} />
-              <div className="p-8 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-8">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 text-cyan-400 mb-2 font-mono text-sm">
-                      <GraduationCap className="w-5 h-5" />
-                      <span>University</span>
-                    </div>
-                    <h3 className="font-mono text-2xl md:text-3xl font-bold text-slate-100 mb-3">
-                      {edu.institution}
-                    </h3>
-                    <div className="flex flex-wrap gap-4 text-slate-400 font-mono text-sm">
-                      <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {edu.period}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4" />
-                        {edu.location}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="glass-effect-subtle px-6 py-4 rounded-xl border border-slate-700/50 text-center md:min-w-[150px]">
-                    <div className="font-mono text-xs text-slate-500 uppercase tracking-wider mb-1">Current Score</div>
-                    <div className="font-mono text-2xl font-bold text-slate-100">{edu.score.split(': ')[1]}</div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <h4 className="font-mono text-lg font-bold text-slate-100 flex items-center gap-2">
-                    <Award className="w-5 h-5 text-yellow-500" />
-                    {edu.degree}
-                  </h4>
-                  <ul className="grid grid-cols-1 gap-3">
-                    {edu.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-3 text-slate-300 text-sm leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-slate-500 mt-2 flex-shrink-0" />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+        {/* Education Info - Actual ID Card */}
+        <div className="lg:col-span-2 flex justify-center items-start">
+          <motion.div
+            variants={itemVariants}
+            className="w-full flex justify-center"
+          >
+            <TiltCard className="rounded-2xl shadow-2xl">
+              <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <img 
+                  src={kushalNitkId} 
+                  alt="NITK ID Card" 
+                  className="relative w-full max-w-[600px] rounded-2xl border border-slate-800/50"
+                />
               </div>
-            </motion.div>
-          ))}
+            </TiltCard>
+          </motion.div>
         </div>
 
         {/* Academic Achievements Stack */}

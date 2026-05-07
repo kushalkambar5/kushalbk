@@ -4,9 +4,16 @@ import { ChevronDown } from 'lucide-react'
 import { useRef } from 'react'
 import VariableProximity from './VariableProximity'
 import GhostCursor from './ui/GhostCursor'
+import { useLenis } from 'lenis/react'
 
 export default function Hero() {
   const containerRef = useRef(null)
+  const lenis = useLenis()
+
+  const handleScrollToProjects = (e: React.MouseEvent) => {
+    e.preventDefault()
+    lenis?.scrollTo('#Projects')
+  }
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32">
@@ -115,7 +122,8 @@ export default function Hero() {
         >
           <a
             href="#Projects"
-            className="glass-effect px-8 py-3 rounded-lg font-mono text-sm font-semibold hover:bg-slate-700/30 border border-slate-600 transition"
+            onClick={handleScrollToProjects}
+            className="glass-effect px-8 py-3 rounded-lg font-mono text-sm font-semibold hover:bg-slate-700/30 border border-slate-600 transition cursor-pointer"
           >
             View Projects
           </a>
