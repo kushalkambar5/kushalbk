@@ -254,7 +254,7 @@ export default function Footer() {
                   +91 9035035884
                 </p>
                 <motion.a
-                  href="https://drive.google.com/file/d/1BwFsC2thamqpx_0g2fP5_7Z2HANNaJoY/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1IN5oSBgI4SmLNATZSWRzklH5PORXntWo/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ x: 5 }}
